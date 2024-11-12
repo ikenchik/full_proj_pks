@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
         ),
         itemCount: products.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProductItem(product: products[index], index: index, removeProduct: removeProduct);
+          return ProductItem(product: products[index], index: index);
         },
       ),
       floatingActionButton: FloatingActionButton(

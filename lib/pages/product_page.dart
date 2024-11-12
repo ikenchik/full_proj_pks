@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/favorite_manager.dart';
+import 'package:provider/provider.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
 
 class ProductPage extends StatelessWidget {
   final Product product;
@@ -8,10 +11,28 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoriteManager = Provider.of<FavoriteManager>(context);
+    final cartManager = Provider.of<CartManager>(context);
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(500, 237, 231, 246),
       appBar: AppBar(
         title: Text(product.productTitle),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              favoriteManager.isFavorite(product) ? Icons.favorite : Icons.favorite_border,
+              color: favoriteManager.isFavorite(product) ? Colors.red : Colors.grey,
+            ),
+            onPressed:(){
+              if (favoriteManager.isFavorite(product)){
+                favoriteManager.removeFromFavorite(product);
+              } else{
+                favoriteManager.addToFavorite(product);
+              }
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -94,7 +115,9 @@ class ProductPage extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(onPressed: (){
+                  cartManager.addToCart(product);
+                },
                   child: const Text("В корзину"),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(

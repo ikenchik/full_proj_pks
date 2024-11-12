@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:full_proj_pks/pages/home_page.dart';
 import 'package:full_proj_pks/components/b_nav_bar.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:full_proj_pks/models/favorite_manager.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoriteManager()),
+        ChangeNotifierProvider(create: (_) => CartManager()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
 import 'package:full_proj_pks/pages/product_page.dart';
+import 'package:full_proj_pks/models/favorite_manager.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatefulWidget {
   final Product product;
   final int index;
-  final Function(int) removeProduct;
+  // final Function(int) removeProduct;
 
-  const ProductItem({super.key, required this.product, required this.index, required this.removeProduct});
+  const ProductItem({super.key, required this.product, required this.index,});
 
   @override
-  _ProductItemState createState() => _ProductItemState();
+  _ProductItemState createState() => _ProductItemState(product: product);
 }
 
 class _ProductItemState extends State<ProductItem> {
-  bool isFavorite = false;
-
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-    // Здесь можно добавить логику для добавления/удаления товара из избранного
-  }
+  final Product product;
+  _ProductItemState({required this.product}) : super();
 
   @override
   Widget build(BuildContext context) {
+    final favoriteManager = Provider.of<FavoriteManager>(context);
+
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: GestureDetector(
@@ -80,10 +78,16 @@ class _ProductItemState extends State<ProductItem> {
                 right: 8,
                 child: IconButton(
                   icon: Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: isFavorite ? Colors.red : Colors.grey,
+                    favoriteManager.isFavorite(product) ? Icons.favorite : Icons.favorite_border,
+                    color: favoriteManager.isFavorite(product) ? Colors.red : Colors.grey,
                   ),
-                  onPressed: toggleFavorite,
+                  onPressed:(){
+                    if (favoriteManager.isFavorite(product)){
+                      favoriteManager.removeFromFavorite(product);
+                    } else{
+                      favoriteManager.addToFavorite(product);
+                    }
+                  },
                 ),
               ),
             ],
