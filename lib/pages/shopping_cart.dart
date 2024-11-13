@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:full_proj_pks/components/cart_product.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:full_proj_pks/models/product.dart';
 import 'package:provider/provider.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
 
 class ShoppingCart extends StatefulWidget {
+
   const ShoppingCart({super.key});
 
   @override
@@ -11,6 +14,7 @@ class ShoppingCart extends StatefulWidget {
 }
 
 class _ShoppingCartState extends State<ShoppingCart> {
+
   @override
   Widget build(BuildContext context) {
     final cartManager = Provider.of<CartManager>(context);
@@ -29,18 +33,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
       ),
       body: ListView.separated(
           itemBuilder: (BuildContext context, int index){
-            return const Center(
-              child: Flex(
-                direction: Axis.horizontal, // Указываем направление строки
-                mainAxisAlignment: MainAxisAlignment.center, // Выравнивание по центру строки
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("УДАЧНО")
-                  ),
-                ],
-              ),
-            );
+            return CartProduct(product: cartManager.cartProducts[index]);
           },
           separatorBuilder: (BuildContext context, int index) => const Divider(),
           itemCount: cartManager.cartProducts.length,
