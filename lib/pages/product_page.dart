@@ -6,11 +6,16 @@ import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:full_proj_pks/pages/home_page.dart';
 import 'package:full_proj_pks/models/product_manager.dart';
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   final Product product;
 
   const ProductPage({super.key, required this.product});
 
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final favoriteManager = Provider.of<FavoriteManager>(context);
@@ -20,25 +25,25 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(500, 237, 231, 246),
       appBar: AppBar(
-        title: Text(product.productTitle),
+        title: Text(widget.product.productTitle),
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              favoriteManager.isFavorite(product) ? Icons.favorite : Icons.favorite_border,
-              color: favoriteManager.isFavorite(product) ? Colors.red : Colors.grey,
+              favoriteManager.isFavorite(widget.product) ? Icons.favorite : Icons.favorite_border,
+              color: favoriteManager.isFavorite(widget.product) ? Colors.red : Colors.grey,
             ),
             onPressed:(){
-              if (favoriteManager.isFavorite(product)){
-                favoriteManager.removeFromFavorite(product);
+              if (favoriteManager.isFavorite(widget.product)){
+                favoriteManager.removeFromFavorite(widget.product);
               } else{
-                favoriteManager.addToFavorite(product);
+                favoriteManager.addToFavorite(widget.product);
               }
             },
           ),
           IconButton(
             icon: const Icon(Icons.delete_outline),
             onPressed: (){
-              productManager.removeFromProducts(product, context);
+              productManager.removeFromProducts(widget.product, context);
             },
           ),
         ],
@@ -48,14 +53,14 @@ class ProductPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.network(
-              product.productImage,
+              widget.product.productImage,
               height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width * 1,
               fit: BoxFit.fill,
             ),
             Center(
               child: Text(
-                product.productName,
+                widget.product.productName,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -64,7 +69,7 @@ class ProductPage extends StatelessWidget {
             ),
             Center(
               child: Text(
-                '${product.productPrice}₽',
+                '${widget.product.productPrice}₽',
                 style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -83,7 +88,7 @@ class ProductPage extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: product.productAbout,
+                      text: widget.product.productAbout,
                       style: const TextStyle(
                         fontSize: 14,
                       ),
@@ -105,7 +110,7 @@ class ProductPage extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: product.productSpecifications,
+                      text: widget.product.productSpecifications,
                       style: const TextStyle(
                         fontSize: 14,
                       ),
@@ -125,7 +130,7 @@ class ProductPage extends StatelessWidget {
             children: [
               Expanded(
                 child: ElevatedButton(onPressed: (){
-                  cartManager.addToCart(product);
+                  cartManager.addToCart(widget.product);
                 },
                   child: const Text("В корзину"),
                   style: ButtonStyle(

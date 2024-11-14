@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:full_proj_pks/models/favorite_manager.dart';
+import 'package:provider/provider.dart';
 
 class ProductManager with ChangeNotifier{
   final List<Product> _products = <Product>[
@@ -30,6 +33,7 @@ class ProductManager with ChangeNotifier{
   ];
 
   List<Product> get products => _products;
+
 
   void addToProducts(Product product){
     if (!_products.contains(product)){

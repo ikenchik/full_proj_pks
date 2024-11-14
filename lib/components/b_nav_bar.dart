@@ -4,6 +4,9 @@ import 'package:full_proj_pks/pages/fav_page.dart';
 import 'package:full_proj_pks/pages/home_page.dart';
 import 'package:full_proj_pks/pages/profile.dart';
 import 'package:full_proj_pks/pages/shopping_cart.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 class BNavBar extends StatefulWidget {
   const BNavBar({super.key});
@@ -31,26 +34,35 @@ class _BNavBarState extends State<BNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final cartManager = Provider.of<CartManager>(context);
     return Scaffold(
       body:
         _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: "Главная",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.favorite_outline),
             label: "Избранное",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart_outlined),
+            icon: badges.Badge(
+              badgeContent: Text(
+                "${cartManager.cartProducts.length}",
+              ),
+              badgeStyle: const badges.BadgeStyle(
+                badgeColor: Colors.amberAccent,
+              ),
+              child: const Icon(Icons.shopping_cart_outlined)
+            ),
             label: "Корзина",
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person_2_outlined),
-            label: "Профиль",
+            label: "Личный кабинет",
           ),
         ],
         currentIndex: _selectedIndex,

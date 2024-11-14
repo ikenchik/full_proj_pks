@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/product.dart';
 
 class CartManager with ChangeNotifier{
   final List<Product> _cartProducts = <Product>[];
@@ -14,7 +15,6 @@ class CartManager with ChangeNotifier{
   }
 
   void removeFromCart(Product product, BuildContext context){
-    if(product.quantity == 1) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -45,8 +45,6 @@ class CartManager with ChangeNotifier{
           );
         },
       );
-      product.quantity--;
-    }
   }
 
   bool isInCart(Product product){
