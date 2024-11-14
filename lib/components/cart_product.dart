@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:provider/provider.dart';
 
 class CartProduct extends StatefulWidget {
   final Product product;
@@ -11,8 +13,10 @@ class CartProduct extends StatefulWidget {
 }
 
 class _CartProductState extends State<CartProduct> {
+
   @override
   Widget build(BuildContext context) {
+    final cartManager = Provider.of<CartManager>(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,16 +36,17 @@ class _CartProductState extends State<CartProduct> {
                   ),
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Text(
                 widget.product.productName,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 '\$${widget.product.productPrice.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
+              IconButton(onPressed:(){cartManager.removeFromCart(widget.product, context);}, icon: Icon(Icons.delete))
             ],
           ),
         ),

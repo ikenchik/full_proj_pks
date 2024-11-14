@@ -3,6 +3,7 @@ import 'package:full_proj_pks/components/b_nav_bar.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:full_proj_pks/models/favorite_manager.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:full_proj_pks/models/product_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -11,6 +12,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => FavoriteManager()),
         ChangeNotifierProvider(create: (_) => CartManager()),
+        ChangeNotifierProvider(create: (_) => ProductManager()),
       ],
       child: const MyApp(),
     ),

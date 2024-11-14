@@ -3,6 +3,8 @@ import 'package:full_proj_pks/models/product.dart';
 import 'package:full_proj_pks/models/favorite_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
+import 'package:full_proj_pks/pages/home_page.dart';
+import 'package:full_proj_pks/models/product_manager.dart';
 
 class ProductPage extends StatelessWidget {
   final Product product;
@@ -13,6 +15,7 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final favoriteManager = Provider.of<FavoriteManager>(context);
     final cartManager = Provider.of<CartManager>(context);
+    final productManager = Provider.of<ProductManager>(context);
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(500, 237, 231, 246),
@@ -30,6 +33,12 @@ class ProductPage extends StatelessWidget {
               } else{
                 favoriteManager.addToFavorite(product);
               }
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete_outline),
+            onPressed: (){
+              productManager.removeFromProducts(product, context);
             },
           ),
         ],

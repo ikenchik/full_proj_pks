@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/product_manager.dart';
 import 'package:full_proj_pks/pages/product_page.dart';
 import 'package:full_proj_pks/models/favorite_manager.dart';
 import 'package:provider/provider.dart';
@@ -7,14 +8,12 @@ import 'package:provider/provider.dart';
 class ProductItem extends StatefulWidget {
   final Product product;
   final int index;
-  // final Function(int) removeProduct;
 
-  const ProductItem({super.key, required this.product, required this.index,});
+  const ProductItem({super.key, required this.product, required this.index});
 
   @override
   _ProductItemState createState() => _ProductItemState(product: product);
 }
-
 class _ProductItemState extends State<ProductItem> {
   final Product product;
   _ProductItemState({required this.product}) : super();

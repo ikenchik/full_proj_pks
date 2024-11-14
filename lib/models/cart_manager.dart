@@ -13,9 +13,40 @@ class CartManager with ChangeNotifier{
     }
   }
 
-  void removeFromCart(Product product){
-    _cartProducts.remove(product);
-    notifyListeners();
+  void removeFromCart(Product product, BuildContext context){
+    if(product.quantity == 1) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.amberAccent,
+            title: const Text('Подтверждение удаления'),
+            content: const Text('Вы уверены, что хотите удалить этот товар?'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Отмена',
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: const Text('Удалить',
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  _cartProducts.remove(product);
+                  notifyListeners();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      product.quantity--;
+    }
   }
 
   bool isInCart(Product product){

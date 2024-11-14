@@ -36,7 +36,7 @@ class _FavPageState extends State<FavPage> {
             childAspectRatio: 0.76, // соотношение сторон элементов
           ),
           itemBuilder: (BuildContext context, int index) {
-            return ProductItem(product: favoriteManager.favProducts[index], index: index);
+            return ProductItem(product: favoriteManager.favProducts[index], index: index,);
           },
           itemCount: favoriteManager.favProducts.length,
       ),

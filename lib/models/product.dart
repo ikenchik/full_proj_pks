@@ -6,10 +6,11 @@ class Product {
   final int productPrice;
   final String productAbout;
   final String productSpecifications;
+  int quantity;
 
   Product({required this.productId, required this.productTitle,
     required this.productImage, required this.productName,
     required this.productPrice, required this.productAbout,
-    required this.productSpecifications,
+    required this.productSpecifications, this.quantity = 0,
   });
 }

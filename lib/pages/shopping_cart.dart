@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_proj_pks/components/cart_product.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
-import 'package:full_proj_pks/models/product.dart';
 import 'package:provider/provider.dart';
-import 'package:full_proj_pks/models/cart_manager.dart';
 
 class ShoppingCart extends StatefulWidget {
 
