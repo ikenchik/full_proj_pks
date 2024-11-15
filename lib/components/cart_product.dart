@@ -68,6 +68,38 @@ class _CartProductState extends State<CartProduct> {
             left: 165,
             child: IconButton(onPressed:(){cartManager.removeFromCart(widget.product, context);}, icon: Icon(Icons.delete_outline)),
           ),
+          Positioned(
+            bottom: 0,
+            left: 230,
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.remove),
+                  onPressed: () {
+                    setState(() {
+                      if (widget.product.quantity > 1) {
+                        widget.product.quantity--;
+                      } else{
+                        cartManager.removeFromCart(widget.product, context);
+                        widget.product.quantity = 0;
+                      }
+                    });
+                  },
+                ),
+                Text(
+                  "${widget.product.quantity}"
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {
+                    setState(() {
+                      widget.product.quantity++;
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
       ]
       ),
     );

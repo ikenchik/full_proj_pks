@@ -3,7 +3,7 @@ import 'package:full_proj_pks/models/product.dart';
 import 'package:full_proj_pks/models/favorite_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
-import 'package:full_proj_pks/pages/home_page.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:full_proj_pks/models/product_manager.dart';
 
 class ProductPage extends StatefulWidget {
@@ -128,23 +128,31 @@ class _ProductPageState extends State<ProductPage> {
           padding: const EdgeInsets.only(bottom: 0),
           child: Row(
             children: [
-              Expanded(
-                child: ElevatedButton(onPressed: (){
-                  cartManager.addToCart(widget.product);
-                },
-                  child: const Text("В корзину"),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
+              Container(
+                child: badges.Badge(
+                  badgeContent: Text(
+                    "${widget.product.quantity}"
+                  ),
+                  badgeStyle: const badges.BadgeStyle(
+                    badgeColor: Colors.amberAccent,
+                  ),
+                  child: ElevatedButton(onPressed: (){
+                    cartManager.addToCart(widget.product);
+                  },
+                    child: const Text("В корзину"),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14),
+                        ),
                       ),
-                    ),
-                    padding: MaterialStateProperty.all(const EdgeInsets.all(14)),
-                    backgroundColor: MaterialStateProperty.all(Colors.grey),
-                    foregroundColor: MaterialStateProperty.all(Colors.black),
-                    textStyle: MaterialStateProperty.all(
-                      const TextStyle(
-                        fontSize: 23,
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(14)),
+                      backgroundColor: MaterialStateProperty.all(Colors.grey),
+                      foregroundColor: MaterialStateProperty.all(Colors.black),
+                      textStyle: MaterialStateProperty.all(
+                        const TextStyle(
+                          fontSize: 23,
+                        ),
                       ),
                     ),
                   ),

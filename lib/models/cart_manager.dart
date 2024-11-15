@@ -10,6 +10,7 @@ class CartManager with ChangeNotifier{
   void addToCart(Product product){
     if (!_cartProducts.contains(product)){
       _cartProducts.add(product);
+      product.quantity++;
       notifyListeners();
     }
   }
@@ -45,6 +46,7 @@ class CartManager with ChangeNotifier{
           );
         },
       );
+      product.quantity = 0;
   }
 
   bool isInCart(Product product){
