@@ -30,6 +30,22 @@ class ProductManager with ChangeNotifier{
       productAbout: "Видеокарта GIGABYTE GeForce RTX 4090 WINDFORCE V2 [GV-N4090WF3V2-24GD] на основе архитектуры NVIDIA Ada Lovelace обеспечивает высокую графическую производительность для работы с программами и запуска игр на ПК. Процессор функционирует с частотой 2230 МГц, которая способна повышаться до значения 2520 МГц в режиме разгона. Видеокарта оснащена 24 ГБ памяти стандарта GDDR6X с пропускной способностью 1008 Гбайт/сек, что обеспечивает быстродействие обработки графических данных.",
       productSpecifications: "1",
     ),
+    Product(productId: 4,
+        productTitle: "Видеокарта Gigabyte Radeon RX 7600 GAMING OC 8G",
+        productImage: "https://avatars.mds.yandex.net/get-mpic/11225627/2a0000018af87c2c8e082045cc24dd2cdac3/180x240",
+        productName: "Видеокарта Gigabyte Radeon RX 7600 GAMING OC 8G",
+        productPrice: 33227,
+        productAbout: "Бренд: GIGABYTE Тип поставки: Ret Количество вентиляторов: 3 Цвет: черный Для геймеров: ДА PartNumber/Артикул Производителя: GV-R76GAMING OC-8GD Тип: Видеокарта Длина упаковки (ед): 0.41",
+        productSpecifications: "Бренд: GIGABYTE Тип поставки: Ret Количество вентиляторов: 3 Цвет: черный Для геймеров: ДА PartNumber/Артикул Производителя: GV-R76GAMING OC-8GD Тип: Видеокарта Длина упаковки (ед): 0.41"
+    ),
+    Product(productId: 5,
+        productTitle: "Видеокарта Acer RX7700XT NITRO OC 12GB GDDR6 192bit 3xDP HDMI 2FAN RTL",
+        productImage: "https://avatars.mds.yandex.net/get-mpic/5245452/2a00000192b631bf90280871d2e4c4d9695b/74x100",
+        productName: "Видеокарта Acer RX7700XT NITRO OC 12GB GDDR6 192bit 3xDP HDMI 2FAN RTL",
+        productPrice: 47767,
+        productAbout: "Эта видеокарта может обеспечить высокую производительность в современных играх и других графических приложениях. Она имеет достаточный объём видеопамяти и широкий интерфейс для подключения нескольких мониторов одновременно. Охлаждение с помощью двух вентиляторов обеспечивает стабильную работу при высоких нагрузках.",
+        productSpecifications: "* **Графический процессор:** AMD Radeon RX 7700 XT. * **Объём видеопамяти:** 12 ГБ GDDR6. * **Ширина шины памяти:** 192 бита."
+    )
   ];
 
   List<Product> get products => _products;
