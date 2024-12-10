@@ -4,6 +4,7 @@ import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:full_proj_pks/models/favorite_manager.dart';
 import 'package:provider/provider.dart';
 
+
 class ProductManager with ChangeNotifier{
   final List<Product> _products = <Product>[
     Product(productId: 1,

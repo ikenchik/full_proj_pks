@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_proj_pks/api/api_service.dart';
 import 'package:full_proj_pks/models/product.dart';
 import 'package:full_proj_pks/models/product_manager.dart';
 import 'package:full_proj_pks/pages/product_page.dart';
@@ -17,6 +18,14 @@ class ProductItem extends StatefulWidget {
 class _ProductItemState extends State<ProductItem> {
   final Product product;
   _ProductItemState({required this.product}) : super();
+
+  late Future<List<Product>> _products;
+
+  @override
+  void initState(){
+    super.initState();
+    _products = ApiService().getProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
