@@ -11,8 +11,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Загружаем продукты при инициализации страницы
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<ProductManager>(context, listen: false).fetchProducts();
+    });
+  }
 
   void navigateToAddProductPage(BuildContext context) async {
     final result = await Navigator.push(
@@ -26,15 +33,20 @@ class _HomePageState extends State<HomePage> {
     final productManager = Provider.of<ProductManager>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("ILYA MARKET",
-          style: TextStyle(fontWeight: FontWeight.bold,
-            letterSpacing: 6,
-            fontSize: 30,
+        title: const Center(
+          child: Text(
+            "ILYA MARKET",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 6,
+              fontSize: 30,
+            ),
           ),
-        )
         ),
       ),
-      body: GridView.builder(
+      body: productManager.products.isEmpty
+          ? const Center(child: CircularProgressIndicator()) // Показываем индикатор загрузки, если данные еще не загружены
+          : GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 2.0,
@@ -43,7 +55,8 @@ class _HomePageState extends State<HomePage> {
         ),
         itemCount: productManager.products.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProductItem(product: productManager.products[index], index: index);
+          return ProductItem(
+              product: productManager.products[index], index: index);
         },
       ),
       floatingActionButton: FloatingActionButton(

@@ -27,7 +27,7 @@ class _AddProductPageState extends State<AddProductPage> {
     super.dispose();
   }
 
-  void _createProduct(BuildContext context) {
+  Future<void> _createProduct(BuildContext context) async {
     final productTitle = productTitleController.text;
     final productImage = productImageController.text;
     final productPrice = int.tryParse(productPriceController.text) ?? 0;
@@ -36,19 +36,19 @@ class _AddProductPageState extends State<AddProductPage> {
 
     if (productTitle.isNotEmpty && productImage.isNotEmpty && productPrice > 0 && productAbout.isNotEmpty && productSpecifications.isNotEmpty) {
       final newProduct = Product(
-        productId: DateTime.now().millisecondsSinceEpoch, // Генерация уникального ID
+        productId: 0, // ID будет назначен на сервере
         productTitle: productTitle,
         productImage: productImage,
-        productName: productTitle, // Предположим, что название и имя совпадают
+        productName: productTitle,
         productPrice: productPrice,
         productAbout: productAbout,
         productSpecifications: productSpecifications,
       );
 
       final productManager = Provider.of<ProductManager>(context, listen: false);
-      productManager.addToProducts(newProduct);
+      await productManager.addProduct(newProduct); // Добавляем продукт через API
 
-      Navigator.pop(context, newProduct); // Возвращаем новый продукт обратно
+      Navigator.pop(context); // Возвращаемся на предыдущую страницу
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -130,7 +130,7 @@ class _AddProductPageState extends State<AddProductPage> {
               ),
               const SizedBox(height: 16),
 
-              //кнопка перехода к методу создания экземпляра класса Product
+              // Кнопка перехода к методу создания экземпляра класса Product
               ElevatedButton(
                 onPressed: () => _createProduct(context),
                 child: const Text("Добавить товар",

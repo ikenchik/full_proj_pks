@@ -32,18 +32,19 @@ class _ProductPageState extends State<ProductPage> {
               favoriteManager.isFavorite(widget.product) ? Icons.favorite : Icons.favorite_border,
               color: favoriteManager.isFavorite(widget.product) ? Colors.red : Colors.grey,
             ),
-            onPressed:(){
-              if (favoriteManager.isFavorite(widget.product)){
+            onPressed: () {
+              if (favoriteManager.isFavorite(widget.product)) {
                 favoriteManager.removeFromFavorite(widget.product);
-              } else{
+              } else {
                 favoriteManager.addToFavorite(widget.product);
               }
             },
           ),
           IconButton(
             icon: const Icon(Icons.delete_outline),
-            onPressed: (){
-              productManager.removeFromProducts(widget.product, context);
+            onPressed: () async {
+              await productManager.removeProduct(widget.product.productId); // Удаляем продукт через API
+              Navigator.pop(context);
             },
           ),
         ],
@@ -131,14 +132,15 @@ class _ProductPageState extends State<ProductPage> {
               Container(
                 child: badges.Badge(
                   badgeContent: Text(
-                    "${widget.product.quantity}"
+                    "${widget.product.quantity}",
                   ),
                   badgeStyle: const badges.BadgeStyle(
                     badgeColor: Colors.amberAccent,
                   ),
-                  child: ElevatedButton(onPressed: (){
-                    cartManager.addToCart(widget.product);
-                  },
+                  child: ElevatedButton(
+                    onPressed: () {
+                      cartManager.addToCart(widget.product);
+                    },
                     child: const Text("В корзину"),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
@@ -158,9 +160,10 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
               ),
-              const SizedBox(width: 16,),
+              const SizedBox(width: 16),
               Expanded(
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(
+                  onPressed: () {},
                   child: const Text("Купить"),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
