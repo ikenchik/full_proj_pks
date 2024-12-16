@@ -1,4 +1,4 @@
-# Yushkin Ilya EFBO-04-22 8 pract
+# Yushkin Ilya EFBO-04-22 10 pract
 
 Серверный файл реализован с использованием языка программирования Go. Его можно найти по ссылке: https://github.com/ikenchik/rest_api_pks
 Соединение с базой данных реализовано при помощи бибилиотеки pgx.
