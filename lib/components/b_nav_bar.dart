@@ -7,6 +7,7 @@ import 'package:full_proj_pks/pages/shopping_cart.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:full_proj_pks/pages/auth_page.dart';
 
 class BNavBar extends StatefulWidget {
   const BNavBar({super.key});
@@ -16,7 +17,6 @@ class BNavBar extends StatefulWidget {
 }
 
 class _BNavBarState extends State<BNavBar> {
-
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -26,7 +26,7 @@ class _BNavBarState extends State<BNavBar> {
     Profile(),
   ];
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -35,9 +35,9 @@ class _BNavBarState extends State<BNavBar> {
   @override
   Widget build(BuildContext context) {
     final cartManager = Provider.of<CartManager>(context);
+
     return Scaffold(
-      body:
-        _widgetOptions.elementAt(_selectedIndex),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           const BottomNavigationBarItem(
@@ -56,7 +56,7 @@ class _BNavBarState extends State<BNavBar> {
               badgeStyle: const badges.BadgeStyle(
                 badgeColor: Colors.amberAccent,
               ),
-              child: const Icon(Icons.shopping_cart_outlined)
+              child: const Icon(Icons.shopping_cart_outlined),
             ),
             label: "Корзина",
           ),
