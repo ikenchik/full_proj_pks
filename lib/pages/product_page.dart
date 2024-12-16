@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:full_proj_pks/models/cart_manager.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:full_proj_pks/models/product_manager.dart';
+import 'package:full_proj_pks/pages/edit_product_page.dart'; // Импортируем новую страницу
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -45,6 +46,17 @@ class _ProductPageState extends State<ProductPage> {
             onPressed: () async {
               await productManager.removeProduct(widget.product.productId); // Удаляем продукт через API
               Navigator.pop(context);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit), // Кнопка редактирования
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProductPage(product: widget.product), // Переходим на страницу редактирования
+                ),
+              );
             },
           ),
         ],
