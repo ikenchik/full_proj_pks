@@ -1,16 +1,9 @@
-# full_proj_pks
+# Yushkin Ilya EFBO-04-22 8 pract
 
-A new Flutter project. IlyaMarket.
 
-## Getting Started
+https://github.com/user-attachments/assets/8bf89d63-6d82-4724-a518-d55f779e7f40
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+https://github.com/user-attachments/assets/1e09e63f-fe70-43cb-a827-b6a97bca8ec6
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
