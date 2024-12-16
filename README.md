@@ -1,9 +1,10 @@
-# Yushkin Ilya EFBO-04-22 8 pract
-
-
-https://github.com/user-attachments/assets/8bf89d63-6d82-4724-a518-d55f779e7f40
+# Yushkin Ilya EFBO-04-22 9 pract
 
 
 
-https://github.com/user-attachments/assets/1e09e63f-fe70-43cb-a827-b6a97bca8ec6
+https://github.com/user-attachments/assets/53b09af1-9f67-4834-bfc5-068d1b4f0eb8
+
+
+
+https://github.com/user-attachments/assets/416914ff-4dfe-4f05-a657-045a76b8ac1d
 
