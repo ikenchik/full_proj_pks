@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:full_proj_pks/models/product.dart';
+import 'package:full_proj_pks/models/order.dart';
 
 class ApiService {
   final Dio _dio = Dio();
@@ -139,6 +140,43 @@ class ApiService {
       }
     } catch (e) {
       throw Exception('Error toggling cart: $e');
+    }
+  }
+
+  Future<void> createOrder(double totalPrice, List<Map<String, dynamic>> products) async {
+    try {
+      await _dio.post('http://192.168.1.12:8080/orders/create', data: {
+        'user_id': 1,
+        'total_price': totalPrice,
+        'products': products,
+      });
+    } catch (e) {
+      throw Exception('Error creating order: $e');
+    }
+  }
+
+  // Метод для получения заказов пользователя
+  Future<List<Order>> getOrders(int userId) async {
+    try {
+      final response = await _dio.get('http://192.168.1.12:8080/orders?user_id=$userId');
+      if (response.statusCode == 200) {
+        List<Order> orders = (response.data as List).map((order) => Order.fromJson(order)).toList();
+        return orders;
+      } else {
+        throw Exception('Failed to load orders');
+      }
+    } catch (e) {
+      throw Exception('Error fetching orders: $e');
+    }
+  }
+
+  Future<void> updateProductInCartStatus(int productId, bool inCart) async {
+    try {
+      await _dio.post('http://192.168.1.12:8080/products/cart/$productId', data: {
+        'in_cart': inCart,
+      });
+    } catch (e) {
+      throw Exception('Error updating product in cart status: $e');
     }
   }
 }

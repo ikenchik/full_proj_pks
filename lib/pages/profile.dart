@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:full_proj_pks/api/supabase_service.dart'; // Импортируйте SupabaseService
 import 'package:full_proj_pks/pages/auth_page.dart';
+import 'package:full_proj_pks/pages/order_page.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -67,6 +68,15 @@ class _ProfileState extends State<Profile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              ListTile(
+                title: const Text('Мои заказы'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OrdersPage()),
+                  );
+                },
+              ),
               const CircleAvatar(
                 radius: 50,
                 backgroundImage: AssetImage('assets/images/scale_1200.png'),
