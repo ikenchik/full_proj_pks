@@ -1,9 +1,8 @@
-# Yushkin Ilya EFBO-04-22 8 pract
+# Yushkin Ilya EFBO-04-22 13 pract
+
+ссылка на сервер - https://github.com/ikenchik/rest_api_pks
 
 
-https://github.com/user-attachments/assets/8bf89d63-6d82-4724-a518-d55f779e7f40
 
-
-
-https://github.com/user-attachments/assets/1e09e63f-fe70-43cb-a827-b6a97bca8ec6
+https://github.com/user-attachments/assets/90920374-5c3f-46f5-aa64-7e121eb7d8f3
 
