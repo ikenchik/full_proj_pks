@@ -76,11 +76,7 @@ class CartManager with ChangeNotifier {
     // Отправляем заказ на сервер
     await _apiService.createOrder(totalPrice, products);
 
-    for (var product in _cartProducts) {
-      await _apiService.updateProductInCartStatus(product.productId, false);
-    }
-
-    // Очищаем корзину
+    // Очищаем корзину на стороне фронтенда
     _cartProducts.clear();
     notifyListeners();
   }

@@ -2,7 +2,7 @@ import 'package:full_proj_pks/models/product.dart';
 
 class Order {
   final int id;
-  final int userId;
+  final String userId;
   final double totalPrice;
   final DateTime orderDate;
   final List<Product> products;

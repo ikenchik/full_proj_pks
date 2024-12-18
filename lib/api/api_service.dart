@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:full_proj_pks/models/product.dart';
 import 'package:full_proj_pks/models/order.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:full_proj_pks/api/supabase_service.dart';
 
 class ApiService {
   final Dio _dio = Dio();
+  final SupabaseClient _supabase = SupabaseService().client;
 
   // Получение списка продуктов
   Future<List<Product>> getProducts({
@@ -145,20 +148,36 @@ class ApiService {
 
   Future<void> createOrder(double totalPrice, List<Map<String, dynamic>> products) async {
     try {
-      await _dio.post('http://192.168.1.12:8080/orders/create', data: {
-        'user_id': 1,
+      final user = _supabase.auth.currentUser; // Получаем текущего пользователя
+      if (user == null) {
+        throw Exception('Пользователь не авторизован');
+      }
+
+      // Отправляем заказ на сервер
+      final response = await _dio.post('http://192.168.1.12:8080/orders/create', data: {
+        'user_id': user.id, // Используем id пользователя из Supabase
         'total_price': totalPrice,
-        'products': products,
+        'products': products, // Убедитесь, что products содержит правильные данные
       });
+
+      // Проверяем статус ответа
+      if (response.statusCode != 200) {
+        throw Exception('Ошибка при создании заказа: ${response.statusMessage}');
+      }
     } catch (e) {
       throw Exception('Error creating order: $e');
     }
   }
 
   // Метод для получения заказов пользователя
-  Future<List<Order>> getOrders(int userId) async {
+  Future<List<Order>> getOrders() async {
     try {
-      final response = await _dio.get('http://192.168.1.12:8080/orders?user_id=$userId');
+      final user = _supabase.auth.currentUser; // Получаем текущего пользователя
+      if (user == null) {
+        throw Exception('Пользователь не авторизован');
+      }
+
+      final response = await _dio.get('http://192.168.1.12:8080/orders?user_id=${user.id}');
       if (response.statusCode == 200) {
         List<Order> orders = (response.data as List).map((order) => Order.fromJson(order)).toList();
         return orders;
@@ -169,6 +188,7 @@ class ApiService {
       throw Exception('Error fetching orders: $e');
     }
   }
+
 
   Future<void> updateProductInCartStatus(int productId, bool inCart) async {
     try {

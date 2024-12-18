@@ -68,15 +68,6 @@ class _ProfileState extends State<Profile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ListTile(
-                title: const Text('Мои заказы'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => OrdersPage()),
-                  );
-                },
-              ),
               const CircleAvatar(
                 radius: 50,
                 backgroundImage: AssetImage('assets/images/scale_1200.png'),
@@ -95,6 +86,17 @@ class _ProfileState extends State<Profile> {
               Text(
                 'Email: ${_userEmail ?? 'Загрузка...'}', // Отображаем email или сообщение "Загрузка..."
                 style: const TextStyle(fontSize: 16),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OrdersPage()),
+                  );
+                },
+                child: const Text('Мои заказы',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ],
           ),
