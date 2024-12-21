@@ -10,9 +10,11 @@ import 'package:full_proj_pks/pages/auth_page.dart';
 import 'package:full_proj_pks/pages/home_page.dart';
 import 'package:full_proj_pks/pages/shopping_cart.dart';
 import 'package:full_proj_pks/pages/order_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await SupabaseService().initialize();
 
   runApp(

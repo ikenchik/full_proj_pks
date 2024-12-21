@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "833017274703",
+    "project_id": "product-db-dad3e",
+    "storage_bucket": "product-db-dad3e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833017274703:android:9e25892d1c67756e5fa53a",
+        "android_client_info": {
+          "package_name": "com.example.full_proj_pks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1pWsijYrSYrLHDFCErcAEOE8uJDuo-Ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
