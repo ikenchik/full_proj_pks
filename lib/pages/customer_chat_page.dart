@@ -16,7 +16,7 @@ class CustomerChatPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ChatPage(), // Замените на ID продавца
+                builder: (context) => ChatPage(receiverId: 'c364641d-89ad-4baf-9ce2-15b546b96dd4'), // Замените на ID продавца
               ),
             );
           },

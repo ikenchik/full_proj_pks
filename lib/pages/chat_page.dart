@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+  final String receiverId; // ID пользователя, с которым ведется чат
+
+  const ChatPage({super.key, required this.receiverId});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -19,11 +21,14 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    _messagesStream = _firestoreService.getMessages();
+    final senderId = Supabase.instance.client.auth.currentUser!.id;
+    _messagesStream = _firestoreService.getChatMessages(senderId, widget.receiverId);
   }
 
   @override
   Widget build(BuildContext context) {
+    final senderId = Supabase.instance.client.auth.currentUser!.id;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Чат'),
@@ -45,10 +50,14 @@ class _ChatPageState extends State<ChatPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       final message = snapshot.data![index];
-                      final isMe = message.senderId == Supabase.instance.client.auth.currentUser!.id;
+                      final isMe = message.senderId == senderId;
                       return ListTile(
                         title: Text(
                           message.text,
+                          textAlign: isMe ? TextAlign.end : TextAlign.start,
+                        ),
+                        subtitle: Text(
+                          message.timestamp.toString(),
                           textAlign: isMe ? TextAlign.end : TextAlign.start,
                         ),
                       );
@@ -73,9 +82,9 @@ class _ChatPageState extends State<ChatPage> {
                 IconButton(
                   icon: const Icon(Icons.send),
                   onPressed: () async {
-                    final userId = Supabase.instance.client.auth.currentUser!.id;
                     await _firestoreService.sendMessage(
-                      userId,
+                      senderId,
+                      widget.receiverId, // Используем receiverId из параметров
                       _messageController.text,
                     );
                     _messageController.clear();
