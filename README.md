@@ -1,9 +1,8 @@
-# Yushkin Ilya EFBO-04-22 8 pract
+# Yushkin Ilya EFBO-04-22 14-15 pract
 
+В данной практической работе реализован чат с продавцом с использованием сервиса firebase. Аутентификация пользователя осуществляется с помощью сервиса supabase. При регистрации, в сервисе supabase аккаунту по умолчанию выдается роль customer. Администратор может изменить данную роль на seller. Функциональные возможности чата проявляются в приложении в зависимости от выбранной роли. Хранение сообщений и функционирование чата реализовано в firebase. Остальное хранение данных - PostgreSQL.
 
-https://github.com/user-attachments/assets/8bf89d63-6d82-4724-a518-d55f779e7f40
+Ссылка на сервер - https://github.com/ikenchik/rest_api_pks
 
-
-
-https://github.com/user-attachments/assets/1e09e63f-fe70-43cb-a827-b6a97bca8ec6
+https://github.com/user-attachments/assets/14828ab1-45b1-43b1-9f01-942b4782fa5a
 
