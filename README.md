@@ -5,3 +5,5 @@
 ![image](https://github.com/user-attachments/assets/1468101e-bf11-42a0-9d48-409a323c7754)
 
 ![image](https://github.com/user-attachments/assets/c8ac9883-012e-494e-b3ca-6fa5bac2b670)
+
+К сожалению приложение не прошло модерацию, по причине того, что является симулятором магазина
