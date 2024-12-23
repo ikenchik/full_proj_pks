@@ -1,9 +1,7 @@
-# Yushkin Ilya EFBO-04-22 8 pract
+# Yushkin Ilya EFBO-04-22 16 pract
 
+Приложение отправлено на модерацию в магазин приложений RuStore. Прикреплено лого, краткое описание, название приложения, возрастная аудитория 16+
 
-https://github.com/user-attachments/assets/8bf89d63-6d82-4724-a518-d55f779e7f40
+![image](https://github.com/user-attachments/assets/1468101e-bf11-42a0-9d48-409a323c7754)
 
-
-
-https://github.com/user-attachments/assets/1e09e63f-fe70-43cb-a827-b6a97bca8ec6
-
+![image](https://github.com/user-attachments/assets/c8ac9883-012e-494e-b3ca-6fa5bac2b670)
